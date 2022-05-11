@@ -8,7 +8,7 @@ function App() {
   const valueSolution1 = -123
   const valueSolution2 = '2137 asdasda 5'
   const valueSolution3a = 'hello', valueSolution3b = 'll'
-  const valueSolution4a = [2, 5, 10, 20, 50, 100, 200, 500], valueSolution4b = 16
+  const valueSolution4a = [2, 5, 10], valueSolution4b = 19
   var reverse = function(x) {
     // Math.abs(x): trị tuyệt đối -> giúp bỏ dấu - đi // dùng Math.abs khi đầu vào chỉ là số
     // toString(): parse về string
@@ -57,13 +57,12 @@ var strStr = function(haystack, needle) {
   }
   return -1;
 };
+// candidates = [2, 5, 10], target = 19
 var combinationSum = function(candidates, target) {
   const result = [];
-  
   function permute(arr=[], sum=0, idx=0) {
       if(sum > target) return;
       if(sum === target) result.push(arr);
-      
       for(let i = idx; i < candidates.length; i++) {
           permute([...arr, candidates[i]], sum+candidates[i], i);
       }
@@ -84,7 +83,7 @@ var combinationSum = function(candidates, target) {
      {`text: ${valueSolution3a}, char find: ${valueSolution3b}`}, index: {strStr(valueSolution3a, valueSolution3b)}
      <br/>
      <div> <img src={solution4} /></div>
-     {`array: ${JSON.stringify(valueSolution4a)}, sum: ${valueSolution4b}`}, result:  {JSON.stringify(combinationSum([2, 5, 10, 20, 50, 100, 200, 500], 16))}
+     {`array: ${JSON.stringify(valueSolution4a)}, sum: ${valueSolution4b}`}, result:  {JSON.stringify(combinationSum(valueSolution4a, valueSolution4b))}
     </div>
   );
 }
