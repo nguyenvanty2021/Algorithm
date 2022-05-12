@@ -4,11 +4,14 @@ import solution3 from './img/solution3.png'
 import solution4 from './img/solution4.png'
 import solution21 from './img/solution2-1.png'
 import solution22 from './img/solution2-2.png'
+import solution5 from './img/solution5.png'
 function App() {
   const valueSolution1 = -123
   const valueSolution2 = '2137 asdasda 5'
   const valueSolution3a = 'hello', valueSolution3b = 'll'
   const valueSolution4a = [2, 5, 10], valueSolution4b = 19
+  const valueSolution5a = 'A man, a plan, a canal: Panama'
+  const valueSolution6a = [1,5,4,2,3,1]
   var reverse = function(x) {
     // Math.abs(x): trị tuyệt đối -> giúp bỏ dấu - đi // dùng Math.abs khi đầu vào chỉ là số
     // toString(): parse về string
@@ -70,6 +73,33 @@ var combinationSum = function(candidates, target) {
   permute()
   return result;
 };
+var isPalindrome = function(s) {
+  var strippedString = s.replace(/\W/g, '');
+  return strippedString
+};
+var reverseWords = function(s) {
+  // s.split(" ") -> Example: 'the sky is blue' = ['the', 'sky', 'is', 'blue']
+  // .join(' ') parse về string lại với mỗi string cách nhau 1 ' '
+  return s.split(" ").reverse().filter(w => w !== "").join(" ");
+};
+// cách 1: 0(logN)
+var findPeakElement = function(nums) {
+  let left = 0, right = nums.length-1, mid;
+  
+  while(left < right) {
+      mid = Math.floor((right+left)/2);
+      if(nums[mid] > nums[mid+1]) right = mid;
+      else left = mid+1;
+  }
+  return left;
+};
+// cách 2: O(n)
+var findPeakElement2 = function(nums) {
+  for(let i = 0; i < nums.length; i++) {
+      if(nums[i] > nums[i+1]) return i;
+  }
+  return nums.length-1;
+};
   return (
     <div className="App">
      <div> <img src={solution1} /></div>
@@ -84,6 +114,15 @@ var combinationSum = function(candidates, target) {
      <br/>
      <div> <img src={solution4} /></div>
      {`array: ${JSON.stringify(valueSolution4a)}, sum: ${valueSolution4b}`}, result:  {JSON.stringify(combinationSum(valueSolution4a, valueSolution4b))}
+     <br/>
+     <p>bỏ tất cả ký tự (space, phẩy, :...)</p>
+     {`text: ${valueSolution5a}, result: ${isPalindrome(valueSolution5a)}`}
+     <br/>
+     <p>đảo từ</p>
+     {reverseWords('the sky is blue')}
+     <br/>
+     <div> <img src={solution5} /></div>
+    {`text: ${JSON.stringify(valueSolution6a)}, redsult: ${findPeakElement(valueSolution6a)}`}
     </div>
   );
 }
