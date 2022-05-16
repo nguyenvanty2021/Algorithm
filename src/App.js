@@ -5,6 +5,7 @@ import solution4 from './img/solution4.png'
 import solution21 from './img/solution2-1.png'
 import solution22 from './img/solution2-2.png'
 import solution5 from './img/solution5.png'
+import solution6 from './img/solution6.png'
 function App() {
   const valueSolution1 = -123
   const valueSolution2 = '2137 asdasda 5'
@@ -12,6 +13,7 @@ function App() {
   const valueSolution4a = [2, 5, 10], valueSolution4b = 19
   const valueSolution5a = 'A man, a plan, a canal: Panama'
   const valueSolution6a = [1,5,4,2,3,1]
+  const valueSolution7 = [1,2,1,3,2,5]
   var reverse = function(x) {
     // Math.abs(x): trị tuyệt đối -> giúp bỏ dấu - đi // dùng Math.abs khi đầu vào chỉ là số
     // toString(): parse về string
@@ -113,6 +115,13 @@ var twoSum = function(numbers, target) {
   
   return [];
 };
+var singleNumber = function(nums) {
+  let map = new Map()
+  for(let num of nums){
+      map.has(num) ? map.delete(num) : map.set(num,1)
+  }
+  return [...map.keys()]
+}
   return (
     <div className="App">
      <div> <img src={solution1} /></div>
@@ -137,9 +146,13 @@ var twoSum = function(numbers, target) {
      <div> <img src={solution5} /></div>
     {`text: ${JSON.stringify(valueSolution6a)}, result: ${findPeakElement(valueSolution6a)}`}
     <br/>
+    <p>Tìm vị trí của 2 phần tử mà tổng của nó = target</p>
     {
       JSON.stringify(twoSum([2,3,4], 6))
     }
+     <br/>
+     <div> <img src={solution6} /></div>
+    {`text: ${valueSolution7}, result: ${JSON.stringify(singleNumber([1,2,1,3,2,5]))}`}
     </div>
   );
 }
