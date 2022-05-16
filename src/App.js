@@ -100,6 +100,19 @@ var findPeakElement2 = function(nums) {
   }
   return nums.length-1;
 };
+var twoSum = function(numbers, target) {
+  // numbers = [2,3,4], target = 6
+  const map = new Map(numbers.map((n, i) => [n, i]));
+  for(let i = 0; i < numbers.length; i++) {
+    // mục đích của hàm này là lấy index của 1 trong 2 kết quả từ tổng 6
+      const complement = Math.abs(numbers[i] - target);
+      if (map.has(complement)) {
+          return [i + 1, map.get(complement) + 1];
+      }
+  }
+  
+  return [];
+};
   return (
     <div className="App">
      <div> <img src={solution1} /></div>
@@ -122,7 +135,11 @@ var findPeakElement2 = function(nums) {
      {reverseWords('the sky is blue')}
      <br/>
      <div> <img src={solution5} /></div>
-    {`text: ${JSON.stringify(valueSolution6a)}, redsult: ${findPeakElement(valueSolution6a)}`}
+    {`text: ${JSON.stringify(valueSolution6a)}, result: ${findPeakElement(valueSolution6a)}`}
+    <br/>
+    {
+      JSON.stringify(twoSum([2,3,4], 6))
+    }
     </div>
   );
 }
